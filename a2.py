@@ -9,7 +9,34 @@
 # 28388886
 
 def main():
-    pass
+    while True:
+
+        user_input = input().split()
+        command = user_input[0]
+        directory = user_input[1] if len(user_input) > 1 else None
+        options = user_input[2] if len(user_input) > 2 else None
+        name = user_input[3] if len(user_input) > 3 else None
+        if command == 'Q':
+            print("Quitting the program.")
+            break
+        elif command == 'R':
+            if directory:
+                read_file(directory)
+            else:
+                print("ERROR")
+        elif command == 'C':
+            if len(user_input) < 4:
+                print('ERROR')
+            else:
+                create_file(directory, options, name)
+        elif command == 'D':
+            if directory:
+                delete_file(directory)
+            else:
+                print("ERROR")
+        else:
+            print("Invalid command")
+
 
 if __name__ == "__main__":
     main()
