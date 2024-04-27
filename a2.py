@@ -8,3 +8,8 @@
 # kellany@uci.edu
 # 28388886
 
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
