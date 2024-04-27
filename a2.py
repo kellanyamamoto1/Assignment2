@@ -8,6 +8,8 @@
 # kellany@uci.edu
 # 28388886
 
+import ui as ui
+
 def main():
     while True:
 
@@ -21,17 +23,17 @@ def main():
             break
         elif command == 'R':
             if directory:
-                read_file(directory)
+                ui.read_file(directory)
             else:
                 print("ERROR")
         elif command == 'C':
             if len(user_input) < 4:
                 print('ERROR')
             else:
-                create_file(directory, options, name)
+                ui.create_file(directory, options, name)
         elif command == 'D':
             if directory:
-                delete_file(directory)
+                ui.delete_file(directory)
             else:
                 print("ERROR")
         else:
