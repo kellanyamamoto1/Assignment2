@@ -24,6 +24,7 @@ def create_file(directory, options, name):
         bio = input("Enter bio: ")
         
         profile = Profile(username = username, password = password, bio = bio)
+        
         with open(filepath, 'w') as f:
             print('')
         f = open(filepath, 'w')
