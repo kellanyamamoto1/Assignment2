@@ -9,14 +9,26 @@
 # 28388886
 
 import pathlib
+from Profile import Profile
+
+def open_file(file_path):
+    pass
 
 def create_file(directory, options, name):
     file = name + ".dsu"
-    path = pathlib.Path(directory) / file
+    filepath = pathlib.Path(directory) / file
     if options == '-n':
-        with open(path, 'w') as f:
-            pass
-        print(path)
+        
+        username = input("Enter username: ")
+        password = input("Enter password: ")
+        bio = input("Enter bio: ")
+        
+        profile = Profile(username = username, password = password, bio = bio)
+        with open(filepath, 'w') as f:
+            print('')
+        f = open(filepath, 'w')
+        profile.save_profile(path = filepath)
+        print(f"Profile for {username} created and saved to {filepath}")
     else:
         print("ERROR")
 

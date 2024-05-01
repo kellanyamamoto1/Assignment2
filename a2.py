@@ -9,6 +9,9 @@
 # 28388886
 
 import ui as ui
+import Profile as Profile
+
+# PATH: C:\Users\kella\OneDrive\Desktop\ICS32Again\Assignment2
 
 def main():
     while True:
@@ -34,6 +37,9 @@ def main():
         elif command == 'D':
             if directory:
                 ui.delete_file(directory)
+        elif command == 'O':
+            if directory:
+                ui.open_file(directory)
             else:
                 print("ERROR")
         else:
