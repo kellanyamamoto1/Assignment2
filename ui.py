@@ -10,6 +10,35 @@
 
 import pathlib
 from Profile import Profile
+administrator = False
+temp_path = ''
+
+def command_list():
+    print("C : Create File")
+
+def commands():
+    """
+    MOVE a2 main here
+    
+    """
+
+
+def user():
+    user_type = input("admin or user?: ")
+    temp = 0
+    if user_type == "admin":
+        temp = 1
+    else:
+        temp = 0
+    return temp
+
+def admin(num):
+    global administrator
+    if num == 1:
+        administrator = True
+    else:
+        administrator = False
+    return administrator
 
 def open_file(file_path):
     pass

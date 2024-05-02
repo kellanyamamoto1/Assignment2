@@ -10,6 +10,7 @@
 
 import ui as ui
 import Profile as Profile
+import admin as admin
 
 # PATH: C:\Users\kella\OneDrive\Desktop\ICS32Again\Assignment2
 
