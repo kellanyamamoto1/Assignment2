@@ -9,5 +9,5 @@ import a2 as a2
 
 def start():
     print("ADMIN MODE ENABLED")
-    ui.admin(1)
+    ui.adminis(1)
     ui.commands()

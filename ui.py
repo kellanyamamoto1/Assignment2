@@ -10,17 +10,50 @@
 
 import pathlib
 from Profile import Profile
+import ui as ui
+import admin as admin
 administrator = False
 temp_path = ''
 
 def command_list():
-    print("C : Create File")
+    pass
 
 def commands():
-    """
-    MOVE a2 main here
-    
-    """
+    while True:
+        
+        user_input = input("input command: ").split()
+        command = user_input[0:1]
+        directory = user_input[1] if len(user_input) > 1 else None
+        options = user_input[2] if len(user_input) > 2 else None
+        name = user_input[3] if len(user_input) > 3 else None
+        if command == "admin":
+            admin.start()
+        else:
+            if command == 'Q':
+                print("Quitting the program.")
+                break
+            elif command == 'R':
+                if directory:
+                    read_file(directory)
+                else:
+                    print("ERROR")
+            elif command == 'C':
+                if len(user_input) < 4:
+                    print('ERROR')
+                else:
+                    create_file(directory, options, name)
+            elif command == 'D':
+                if directory:
+                    delete_file(directory)
+            elif command == 'O':
+                if directory:
+                    open_file(directory)
+                else:
+                    print("ERROR")
+            elif command == 'E':
+                edit_file(directory)
+            else:
+                print("Invalid command")
 
 
 def user():
@@ -32,7 +65,7 @@ def user():
         temp = 0
     return temp
 
-def admin(num):
+def adminis(num):
     global administrator
     if num == 1:
         administrator = True
@@ -41,6 +74,9 @@ def admin(num):
     return administrator
 
 def open_file(file_path):
+    pass
+
+def edit_file(file_path):
     pass
 
 def create_file(directory, options, name):
