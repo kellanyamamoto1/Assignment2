@@ -12,15 +12,14 @@ import pathlib
 from Profile import Profile
 import ui as ui
 import admin as admin
+import user as user
 administrator = False
 temp_path = ''
 
 def command_list():
     pass
 
-def commands():
-    while True:
-        
+def commands(): 
         user_input = input("input command: ").split()
         command = user_input[0:1]
         directory = user_input[1] if len(user_input) > 1 else None
@@ -31,7 +30,7 @@ def commands():
         else:
             if command == 'Q':
                 print("Quitting the program.")
-                break
+                quit()
             elif command == 'R':
                 if directory:
                     read_file(directory)
@@ -52,8 +51,9 @@ def commands():
                     print("ERROR")
             elif command == 'E':
                 edit_file(directory)
-            else:
-                print("Invalid command")
+            elif command == 'P':
+                print_file_data(directory)
+
 
 
 def user():
@@ -73,10 +73,41 @@ def adminis(num):
         administrator = False
     return administrator
 
+#############################3
+
+def get_path():
+    print("Please enter a path:")
+    path = input()
+    return path
+
+def file_name():
+    name = input("Please enter a file name:  ")
+    name = name + ".dsu"
+    return name
+
 def open_file(file_path):
-    pass
+    global temp_path
+    if administrator:
+        path = file_path.split(' ')
+        temp_path = path[1]
+        f = open(temp_path, 'a')
+        print(temp_path + " has been opened")
+        return temp_path
+    else:
+        path = get_path()
+        print("Without the file extention,")
+        name = file_name()
+        temp_path = path + name
+        f = open(temp_path, 'a')
+        print(temp_path + ' Has been opened')
+        print(f.read())
+    #PRINT COMMAND LIST
+    return temp_path
 
 def edit_file(file_path):
+    pass
+
+def print_file_data(file_path):
     pass
 
 def create_file(directory, options, name):

@@ -20,5 +20,5 @@ Help -- Relist commands
 
 
 def start():
-    ui.admin(0)
+    ui.adminis(0)
     ui.commands()
