@@ -19,7 +19,7 @@ from pathlib import Path
 
 
 if __name__ == "__main__":
-    if ui.user() == 1:
+    if ui.user_check() == 1:
         admin.start()
     else:
         #print list of commands

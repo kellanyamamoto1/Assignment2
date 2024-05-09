@@ -21,7 +21,7 @@ def command_list():
 
 def commands(): 
         user_input = input("input command: ").split()
-        command = user_input[0:1]
+        command = user_input[0]
         directory = user_input[1] if len(user_input) > 1 else None
         options = user_input[2] if len(user_input) > 2 else None
         name = user_input[3] if len(user_input) > 3 else None
@@ -56,7 +56,7 @@ def commands():
 
 
 
-def user():
+def user_check():
     user_type = input("admin or user?: ")
     temp = 0
     if user_type == "admin":
@@ -73,7 +73,14 @@ def adminis(num):
         administrator = False
     return administrator
 
-#############################3
+######## NEED TO DO #####################
+"""
+- Create file - add admin
+- Edit file - all
+- Print file - all 
+- check for admin in all sections
+- style checker
+"""
 
 def get_path():
     print("Please enter a path:")
@@ -101,11 +108,14 @@ def open_file(file_path):
         f = open(temp_path, 'a')
         print(temp_path + ' Has been opened')
         print(f.read())
-    #PRINT COMMAND LIST
+    commands()
     return temp_path
 
 def edit_file(file_path):
-    pass
+    profile = Profile()
+    profile.load_profile(path = temp_path)
+
+
 
 def print_file_data(file_path):
     pass
@@ -126,6 +136,7 @@ def create_file(directory, options, name):
         f = open(filepath, 'w')
         profile.save_profile(path = filepath)
         print(f"Profile for {username} created and saved to {filepath}")
+        commands()
     else:
         print("ERROR")
 
@@ -137,6 +148,7 @@ def delete_file(file_path):
         if path.exists():
             path.unlink()
             print(f"{file_path} DELETED")
+            commands()
         else:
             print(f"File '{file_path}' not found")
     else:
