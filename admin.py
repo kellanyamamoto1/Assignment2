@@ -7,7 +7,14 @@ from pathlib import Path
 import ui as ui
 import a2 as a2
 
+admin_instructions = """Print Full File using syntax:
+[COMMAND] [INPUT] [[-]OPTION] [INPUT]
+-------------------------------------
+"""
+
+
 def start():
     print("ADMIN MODE ENABLED")
+    print(admin_instructions)
     ui.adminis(1)
     ui.commands()

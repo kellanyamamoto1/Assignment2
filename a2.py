@@ -1,6 +1,7 @@
 # a2.py
 
-# Starter code for assignment 2 in ICS 32 Programming with Software Libraries in Python
+# Starter code for assignment 2 in ICS 32
+# Programming with Software Libraries in Python
 
 # Replace the following placeholders with your information.
 
@@ -15,16 +16,11 @@ import user as user
 from pathlib import Path
 
 # PATH: C:\Users\kella\OneDrive\Desktop\ICS32Again\Assignment2
-#E -usr "mark b" -pwd "password123" -bio "test bio"
-
-usage = '''
-Syntax- 
-'''
-
+# E -usr "mark b" -pwd "password123" -bio "test bio"
 
 if __name__ == "__main__":
     if ui.user_check() == 1:
         admin.start()
     else:
-        #print list of commands
-        user.start()    
+        # print list of commands
+        user.start()
