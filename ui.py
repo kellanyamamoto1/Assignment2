@@ -20,7 +20,7 @@ def command_list():
     pass
 
 def commands(): 
-        user_input = input("input command: ").split()
+        user_input = input("Input command with path and desired file: ").split()
         command = user_input[0]
         directory = user_input[1] if len(user_input) > 1 else None
         options = user_input[2] if len(user_input) > 2 else None
@@ -96,16 +96,13 @@ def open_file(file_path):
     global temp_path
     if administrator:
         path = file_path.split(' ')
-        temp_path = path[1]
+        temp_path = file_path
         f = open(temp_path, 'a')
-        print(temp_path + " has been opened")
+        print(temp_path + " has been opened as administrator")
         return temp_path
     else:
-        path = get_path()
-        print("Without the file extention,")
-        name = file_name()
-        temp_path = path + name
-        f = open(temp_path, 'a')
+        temp_path = file_path
+        f = open(temp_path, 'r')
         print(temp_path + ' Has been opened')
         print(f.read())
     commands()
