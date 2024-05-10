@@ -15,7 +15,11 @@ import user as user
 from pathlib import Path
 
 # PATH: C:\Users\kella\OneDrive\Desktop\ICS32Again\Assignment2
+#E -usr "mark b" -pwd "password123" -bio "test bio"
 
+usage = '''
+Syntax- 
+'''
 
 
 if __name__ == "__main__":
