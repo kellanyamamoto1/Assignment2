@@ -25,9 +25,9 @@ R -- Read a file
 O -- Open a file
 E -- Edit a file
 P -- Print a file
-
-To edit or print the contents of a file, you must open it first using the O command 
+*To edit or print the contents of a file, you must open it first using the O command 
 (Syntax - 'O [path]' inlcuding the file and extension)
+*If user, use syntax:[COMMAND] [[-]OPTION]")
 """
 
 
@@ -85,21 +85,20 @@ def adminis(num):
 
 ######## NEED TO DO #####################
 """
-- Create file - add admin
-- Edit file - all
-- Print file - all 
+- Create file - fix admin
+- Edit file - updated values are fucked up 
 - check for admin in all sections
 - style checker
 """
 
 def get_path():
-    print("Please enter a path with file name and extension:")
-    path = input()
+    print("Please enter a path")
+    path = input() 
+    path = path + '\\'
     return path
 
 def file_name():
-    name = input("Please enter a file name:  ")
-    name = name + ".dsu"
+    name = input("Please enter a file name without file extenstion:")
     return name
 
 def open_file(file_path):
@@ -111,7 +110,10 @@ def open_file(file_path):
         print(temp_path + " has been opened as administrator")
         return temp_path
     else:
-        temp_path = file_path
+        path = get_path()
+        print("With the file extention,")
+        name = file_name()
+        temp_path = path + name + '.dsu'
         f = open(temp_path, 'r')
         print(temp_path + ' Has been opened')
         print(f.read())
@@ -119,53 +121,94 @@ def open_file(file_path):
     return temp_path
 
 def edit_file(user_input):
-    get_path()
-    lisp = user_input
-    bio_index = lisp.find('-bio')
-    bio = lisp[bio_index+1]
-    if bio_index != -1:
-        start_quote = user_input.find('"', bio_index)
-        end_quote = user_input.find('"', start_quote + 1)
-        if start_quote != -1 and end_quote != -1:
-            bio = user_input[start_quote + 1:end_quote]
+    if administrator:  ######delete admin part
+        lisp = user_input
+        bio_index = lisp.find('-bio')
+        bio = lisp[bio_index+1]
+        if bio_index != -1:
+            start_quote = user_input.find('"', bio_index)
+            end_quote = user_input.find('"', start_quote + 1)
+            if start_quote != -1 and end_quote != -1:
+                bio = user_input[start_quote + 1:end_quote]
 
+        profile = Profile()
+        profile.load_profile(path = temp_path)
 
-    profile = Profile()
-    profile.load_profile(path = temp_path)
+        if '-usr' in lisp:
+            usr_index = lisp.index('-usr')
+            new_usr = ' '.join(lisp[usr_index + 1:]).strip('"')
+            profile.username = new_usr
+            profile.save_profile(temp_path)
+            print("username updated")
+        if '-pwd' in lisp:
+            pwd_index = lisp.index('-pwd')
+            new_pwd= lisp[pwd_index + 1]
+            profile.password = new_pwd.strip('"')
+            profile.save_profile(temp_path)
+            print("password updated")
+        if '-bio' in lisp:
+            profile.bio = bio.strip('"')
+            profile.save_profile(path = temp_path)
+            print("bio updated")
+        if '-addpost' in lisp:
+            post_index = lisp.index('-addpost')
+            post_content = ' '.join(lisp[post_index + 1:])
+            new_post = Post(post_content)
+            profile.add_post(new_post)
+            profile.save_profile(temp_path)
+            print("post added")
+        if '-delpost' in lisp:
+            pass
+        commands()
+    else:
+        get_path() ###############
+        print("To use 'E', use syntax: 'E [-]OPTION] [INPUT] ")
+        lisp = user_input
+        bio_index = lisp.find('-bio')
+        bio = lisp[bio_index+1]
+        if bio_index != -1:
+            start_quote = user_input.find('"', bio_index)
+            end_quote = user_input.find('"', start_quote + 1)
+            if start_quote != -1 and end_quote != -1:
+                bio = user_input[start_quote + 1:end_quote]
 
-    if '-usr' in lisp:
-        usr_index = lisp.index('-usr')
-        new_usr = ' '.join(lisp[usr_index + 1:]).strip('"')
-        profile.username = new_usr
-        profile.save_profile(temp_path)
-        print("username updated")
-    if '-pwd' in lisp:
-        pwd_index = lisp.index('-pwd')
-        new_pwd= lisp[pwd_index + 1]
-        profile.password = new_pwd.strip('"')
-        profile.save_profile(temp_path)
-        print("password updated")
-    if '-bio' in lisp:
-        profile.bio = bio.strip('"')
-        profile.save_profile(path = temp_path)
-        print("bio updated")
-    if '-addpost' in lisp:
-        post_index = lisp.index('-addpost')
-        post_content = ' '.join(lisp[post_index + 1:])
-        new_post = Post(post_content)
-        profile.add_post(new_post)
-        profile.save_profile(temp_path)
-        print("post added")
-    if '-delpost' in lisp:
-        pass
-    commands()
+        profile = Profile()
+        profile.load_profile(path = temp_path)
+
+        if '-usr' in lisp:
+            usr_index = lisp.index('-usr')
+            new_usr = ' '.join(lisp[usr_index + 1:]).strip('"')
+            profile.username = new_usr
+            profile.save_profile(temp_path)
+            print("username updated")
+        if '-pwd' in lisp:
+            pwd_index = lisp.index('-pwd')
+            new_pwd= lisp[pwd_index + 1]
+            profile.password = new_pwd.strip('"')
+            profile.save_profile(temp_path)
+            print("password updated")
+        if '-bio' in lisp:
+            profile.bio = bio.strip('"')
+            profile.save_profile(path = temp_path)
+            print("bio updated")
+        if '-addpost' in lisp:
+            post_index = lisp.index('-addpost')
+            post_content = ' '.join(lisp[post_index + 1:])
+            new_post = Post(post_content)
+            profile.add_post(new_post)
+            profile.save_profile(temp_path)
+            print("post added")
+        if '-delpost' in lisp:
+            pass
+        commands()
+
     
 
 
 
 def print_file_data(user_input):
     options = user_input.split()[1:]
-    #get_path()
+    
     global temp_path
     profile = Profile()
     profile.load_profile(temp_path)
@@ -202,11 +245,8 @@ def print_file_data(user_input):
 
 def create_file(user_input):
         global temp_path
+        #used for my reference
         items = user_input
-        directory_C = items[1] if len(items) > 1 else None
-        options_C = items[2] if len(items) > 2 else None
-        name_C = items[3] if len(items) > 3 else None
-
         if administrator:
             paths = items
             if len(paths) > 1:
@@ -227,12 +267,16 @@ def create_file(user_input):
                     profile.save_profile(path = filepath)
                     print(f'{filepath} OPENED')
                     temp_path = filepath
+                else:
+                    print("Must follow: [COMMAND] [INPUT] [[-]OPTION] [INPUT] syntax ")
             print(f"PATH TO FILE:  {temp_path}")
+            commands()
             return temp_path     
         else:
-            if options_C == "-n":
-                
-                line = directory_C + "\\" + name_C + ".dsu"
+            if '-n' in items:
+                the_path = get_path()
+                the_name = file_name()
+                line = the_path + "\\" + the_name + ".dsu"
                 username = input("Enter Username:  ")
                 password = input("Enter Password:  ")
                 bio = input("Enter bio: ")
@@ -248,7 +292,7 @@ def create_file(user_input):
                 profile.save_profile(path = line)
                 f = open(line, 'a')
             else:
-                print("Must follow: [COMMAND] [INPUT] [[-]OPTION] [INPUT] syntax ")
+                print("Must follow: [COMMAND] [[-]OPTION]syntax ")
         commands()
         return temp_path
 
